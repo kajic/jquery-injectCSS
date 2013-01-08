@@ -1,6 +1,6 @@
 /*
  * jquery.injectCSS.js - jquery css injection plugin
- * Copyright (C) 2013, Robert Kajic
+ * Copyright (C) 2013, Robert Kajic (robert@kajic.com)
  * http://kajic.com
  *
  * Allows for injection of CSS defined as javascript JSS objects. 
