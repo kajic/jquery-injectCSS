@@ -15,7 +15,7 @@
 
 (function ($, undefined) {
     
-function toCSS(jss, scope) {    
+function toCSS(jss) {    
     var result = {};
     
     if(typeof(jss)=="string"){
@@ -29,7 +29,7 @@ function toCSS(jss, scope) {
         }
     }
     
-    json_to_css(scope||"", jss);
+    json_to_css("", jss);
     
     // output result:   
     var ret="";
@@ -143,5 +143,6 @@ $.injectCSS = function(jss, options) {
     }
     css += toCSS(jss);
     container.text(css);
+    return container;
 };
 })( jQuery, window, document );
