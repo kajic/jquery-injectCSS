@@ -132,9 +132,11 @@ var defaults = {
 $.injectCSS = function(jss, options) {
     options = $.extend({}, defaults, options);
 
+    options.media = options.media || 'screen';
+
     var container = $("#"+options.containerName);
     if (!container.length) {
-        container = $("<style id='"+options.containerName+"'>").appendTo("head");
+        container = $("<style id='"+options.containerName+"' media='"+options.media+"'>").appendTo("head");
     }
 
     var css = "";
