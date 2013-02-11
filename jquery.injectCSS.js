@@ -132,7 +132,7 @@ var defaults = {
 $.injectCSS = function(jss, options) {
     options = $.extend({}, defaults, options);
 
-    options.media = options.media || 'screen';
+    options.media = options.media || 'all';
 
     var container = $("#"+options.containerName);
     if (!container.length) {
