@@ -46,5 +46,7 @@ See http://jss-lang.org/ for further documenation on the JSS language.
 
 **truncateFirst** (default=false): Clear all previously set styles in containerName.
 
+**media** (default="all"): Media type.
+
 ### License
 jquery-injectCSS is free software, and may be redistributed under the MIT-LICENSE.
