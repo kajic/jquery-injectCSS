@@ -158,7 +158,7 @@
 
         var container = jQuery("#" + options.containerName);
         if (!container.length) {
-            container = jQuery("<style type='text/css'></style>").appendTo('head').attr({
+            container = jQuery("<style></style>").appendTo('head').attr({
                 media: options.media,
                 id: options.containerName,
                 type: 'text/css'
