@@ -61,8 +61,10 @@
                                 jsonToCSS(makeSelectorName(scope, property), value);
                             }
                             break;
+/*
                         default:
                             console.log("ignoring unknown type " + typeof(value) + " in property " + property);
+*/
                     }
                 }
             }
@@ -119,7 +121,9 @@
                 eval("var jss = {" + jss + "}");
             }
             catch (e) {
+/*
                 console.log(e);
+*/
                 return "/*\nUnable to parse JSS: " + e + "\n*/";
             }
         }
@@ -154,7 +158,11 @@
 
         var container = jQuery("#" + options.containerName);
         if (!container.length) {
-            container = jQuery("<style id='" + options.containerName + "' media='" + options.media + "'>").appendTo("head");
+            container = jQuery("<style type='text/css'></style>").appendTo('head').attr({
+                media: options.media,
+                id: options.containerName,
+                type: 'text/css'
+            })[0];
         }
 
         var css = "";
@@ -162,7 +170,13 @@
             css += container.text();
         }
         css += toCSS(jss);
-        container.text(css);
+
+        if (container.styleSheet !== undefined && container.styleSheet.cssText !== undefined) { // IE
+            container.styleSheet.cssText = css;
+        } else {
+            container.appendChild(document.createTextNode(css)); // Others
+        }
+
         return container;
     };
 }(jQuery));
