@@ -61,10 +61,6 @@
                                 jsonToCSS(makeSelectorName(scope, property), value);
                             }
                             break;
-/*
-                        default:
-                            console.log("ignoring unknown type " + typeof(value) + " in property " + property);
-*/
                     }
                 }
             }
@@ -121,9 +117,6 @@
                 eval("var jss = {" + jss + "}");
             }
             catch (e) {
-/*
-                console.log(e);
-*/
                 return "/*\nUnable to parse JSS: " + e + "\n*/";
             }
         }
