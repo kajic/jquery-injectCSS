@@ -155,7 +155,7 @@
                 media: options.media,
                 id: options.containerName,
                 type: 'text/css'
-            })[0];
+            });
         }
 
         var css = "";
@@ -164,10 +164,11 @@
         }
         css += toCSS(jss);
 
-        if (container.styleSheet !== undefined && container.styleSheet.cssText !== undefined) { // IE
-            container.styleSheet.cssText = css;
+        var containerDomElem = container[0];
+        if (containerDomElem.styleSheet !== undefined && containerDomElem.styleSheet.cssText !== undefined) { // IE
+            containerDomElem.styleSheet.cssText = css;
         } else {
-            container.appendChild(document.createTextNode(css)); // Others
+            container.text(css); //Others
         }
 
         return container;
