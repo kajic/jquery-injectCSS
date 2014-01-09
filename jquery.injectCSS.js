@@ -141,6 +141,7 @@
 
     var defaults = {
         truncateFirst: false,
+        container: null,
         containerName: "injectCSSContainer",
         useRawValues: false
     };
@@ -150,7 +151,7 @@
 
         options.media = options.media || 'all';
 
-        var container = jQuery("#" + options.containerName);
+        var container = (options.container && jQuery(options.container)) || jQuery("#" + options.containerName);
         if (!container.length) {
             container = jQuery("<style></style>").appendTo('head').attr({
                 media: options.media,
