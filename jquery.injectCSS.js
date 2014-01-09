@@ -17,7 +17,7 @@
 (function (jQuery) {
     'use strict';
 
-    function toCSS(jss) {
+    function toCSS(jss, options) {
         function jsonToCSS(scope, css) {
             if (scope && !result[scope]) {
                 result[scope] = {};
@@ -90,7 +90,7 @@
 
         function addProperty(scope, property, value) {
 
-            if (typeof(value) === "number") {
+            if (typeof(value) === "number" && !options.useRawValues) {
                 value = value + "px";
             }
 
@@ -141,7 +141,8 @@
 
     var defaults = {
         truncateFirst: false,
-        containerName: "injectCSSContainer"
+        containerName: "injectCSSContainer",
+        useRawValues: false
     };
 
     jQuery.injectCSS = function (jss, options) {
@@ -162,7 +163,7 @@
         if (!options.truncateFirst) {
             css += container.text();
         }
-        css += toCSS(jss);
+        css += toCSS(jss, options);
 
         var containerDomElem = container[0];
         if (containerDomElem.styleSheet !== undefined && containerDomElem.styleSheet.cssText !== undefined) { // IE
