@@ -160,14 +160,16 @@
             });
         }
 
+        var containerDomElem = container[0];
+        var isIeStylesheet = containerDomElem.styleSheet !== undefined && containerDomElem.styleSheet.cssText !== undefined;
+
         var css = "";
         if (!options.truncateFirst) {
-            css += container.text();
+            css += isIeStylesheet ? containerDomElem.styleSheet.cssText : container.text();
         }
         css += toCSS(jss, options);
 
-        var containerDomElem = container[0];
-        if (containerDomElem.styleSheet !== undefined && containerDomElem.styleSheet.cssText !== undefined) { // IE
+        if (isIeStylesheet) {
             containerDomElem.styleSheet.cssText = css;
         } else {
             container.text(css); //Others
