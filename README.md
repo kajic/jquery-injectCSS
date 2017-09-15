@@ -1,7 +1,7 @@
 jquery-injectCSS
 ================
 
-Allows for injection of CSS defined as javascript JSS objects. 
+Allows for injection of CSS defined as javascript JSS objects.
 
 Based on JSS (http://jss-lang.org/).
 
@@ -47,6 +47,13 @@ See http://jss-lang.org/ for further documenation on the JSS language.
 **truncateFirst** (default=false): Clear all previously set styles in containerName.
 
 **media** (default="all"): Media type.
+
+**merge** (default=false): Merge new css with existing set of rules.
+Existing version of css cached in the memory during previous call of inject method with this option.
+Setting this option to false will clear the cache.
+This option is useful for making changes repeatedly,
+to avoid growing heap of overwritten properties in the head of html document.
+Setting this option to true will also forces truncateFirst option to be true.
 
 ### License
 jquery-injectCSS is free software, and may be redistributed under the MIT-LICENSE.
