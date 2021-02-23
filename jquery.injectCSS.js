@@ -120,7 +120,14 @@
                 return "/*\nUnable to parse JSS: " + e + "\n*/";
             }
         }
-
+        if(options.merge)
+        {
+            if(!jQuery.injectCSS.jssCache)
+                jQuery.injectCSS.jssCache = {};
+            jss = jQuery.extend(true, jQuery.injectCSS.jssCache, jss);
+        }else{
+            delete jQuery.injectCSS.jssCache;
+        }
         jsonToCSS("", jss);
 
         // output result:
@@ -139,17 +146,13 @@
         return ret;
     }
 
-    var defaults = {
-        truncateFirst: false,
-        container: null,
-        containerName: "injectCSSContainer",
-        useRawValues: false
-    };
 
     jQuery.injectCSS = function (jss, options) {
-        options = jQuery.extend({}, defaults, options);
+        options = jQuery.extend({}, jQuery.injectCSS.defaults, options);
 
         options.media = options.media || 'all';
+        // in merge mode we also need to truncate first, previous version of css will be restored from the inner cache
+        options.truncateFirst = options.truncateFirst||options.merge;
 
         var container = (options.container && jQuery(options.container)) || jQuery("#" + options.containerName);
         if (!container.length) {
@@ -177,4 +180,14 @@
 
         return container;
     };
+
+    //defaults exposed to allow chage defaults
+    jQuery.injectCSS.defaults = {
+        truncateFirst: false,
+        container: null,
+        containerName: "injectCSSContainer",
+        useRawValues: false,
+        merge:false
+    };
+
 }(jQuery));
